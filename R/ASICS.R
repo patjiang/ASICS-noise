@@ -89,7 +89,7 @@ ASICS <- function(spectra_obj,
                            exclusion.areas = matrix(c(4.5, 5.1), ncol = 2),
                            max.shift = 0.02, pure.library = NULL,
                            threshold.noise = 0.02, seed = 1234, ncores = 1,
-                           combine = TRUE, verbose = TRUE){
+                           combine = TRUE, mult.noise = 0.172, add.noise = 0.15, verbose = TRUE){
 
   # seed and parallel environment
   set.seed(seed)
@@ -137,8 +137,8 @@ ASICS <- function(spectra_obj,
   #and sort metabolites by regression residuals
 
   # compute weights
-  s1 <- 0.172 #standard deviation of multiplicative noise
-  s2 <- 0.15 #standard deviation of additive noise
+  s1 <- mult.noise #standard deviation of multiplicative noise
+  s2 <- add.noise #standard deviation of additive noise
   if (verbose) cat("Compute weights \n")
   spectra_obj <-
     bplapply(spectra_obj,
