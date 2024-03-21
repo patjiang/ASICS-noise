@@ -55,7 +55,7 @@ ASICS <- function(spectra_obj,
                   exclusion.areas = matrix(c(4.5, 5.1), ncol = 2),
                   max.shift = 0.02, pure.library = NULL,
                   threshold.noise = 0.02, combine = TRUE, seed = 1234,
-                  ncores = 1, verbose = TRUE) {
+                  ncores = 1, mult.noise = 0.172, add.noise = 0.15, verbose = TRUE) {
 
   if(!is.null(exclusion.areas) &&
      (!is.matrix(exclusion.areas) | ncol(exclusion.areas) != 2)){
@@ -77,7 +77,7 @@ ASICS <- function(spectra_obj,
 
   res_estimation <- .ASICSInternal(spectra_obj, exclusion.areas, max.shift,
                                    pure.library, threshold.noise,  seed, ncores,
-                                   combine, verbose)
+                                   combine, mult.noise, add.noise, verbose)
 
   return(res_estimation)
 }
